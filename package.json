@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
-    "dev": "parcel src/index.html"
+    "dev": "parcel serve src/index.html"
   },
   "author": "Nguyễn Việt Long <longnvb01476@gmail.com>",
   "license": "ISC",
@@ -16,6 +16,10 @@
     "@babel/preset-react": "^7.12.13",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "parcel": "^2.0.1",
     "prettier": "^2.4.1"
   },
