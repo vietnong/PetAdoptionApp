@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import useBreedList from "./useBreedList";
 import Pet from "./Pet";
+import Result from "./Result";
+import ThemeContext from "./ThemeContext";
+
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 const SearchParams = () => {
+  const [theme, setTheme] = useContext(ThemeContext);
   const [location, setLocation] = useState("Seattle, WA");
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useBreedList(animal);
   const [pets, setPets] = useState([]);
-
   useEffect(() => {
     requestPets();
   }, []);
@@ -44,9 +47,10 @@ const SearchParams = () => {
           Animal
           <select
             id="animal"
-            value={animal}
+            value={animal || ""}
             onChange={(e) => setAnimal(e.target.value)}
             onBlur={(e) => setAnimal(e.target.value)}
+            defaultValue={""}
           >
             <option />
             {ANIMALS.map((animal) => (
@@ -61,9 +65,10 @@ const SearchParams = () => {
           <select
             id="breed"
             disabled={!breeds.length}
-            value={breed}
+            value={breed || ""}
             onChange={(e) => setBreed(e.target.value)}
             onBlur={(e) => setBreed(e.target.value)}
+            defaultValue={""}
           >
             <option />
             {breeds.map((breed) => {
@@ -73,18 +78,22 @@ const SearchParams = () => {
             })}
           </select>
         </label>
-        <button>Submit</button>
+        <label htmlFor="theme">
+          Theme
+          <select
+            value={theme}
+            onChange={(e) => setTheme(e.target.value)}
+            onBlur={(e) => setTheme(e.target.value)}
+          >
+            <option value="peru">Peru</option>
+            <option value="darkblue">Dark Blue</option>
+            <option value="chartreuse">Chartreuse</option>
+            <option value="mediumorchid">Medium Orchid</option>
+          </select>
+        </label>
+        <button style={{ backgroundColor: theme }}>Submit</button>
       </form>
-      <div>
-        {pets.map((pet) => (
-          <Pet
-            name={pet.name}
-            animal={pet.animal}
-            breed={pet.breed}
-            key={pet.id}
-          />
-        ))}
-      </div>
+      <Result pets={pets} />
     </div>
   );
 };
