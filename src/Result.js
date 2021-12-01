@@ -16,7 +16,7 @@ const Result = ({ pets }) => {
               id={pet.id}
               key={pet.id}
             ></Pet>
-          )
+          );
         })
       )}
     </div>
