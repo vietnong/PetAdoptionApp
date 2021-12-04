@@ -1,7 +1,9 @@
-import { Component } from "react";
+import { Component, lazy } from "react";
 import Carousel from "./Carousel";
 import ThemeContext from "./ThemeContext";
-import Modal from "./Modal";
+// import Modal from "./Modal";
+
+const Modal = lazy(() => import("./Modal"));
 
 class Details extends Component {
   constructor() {

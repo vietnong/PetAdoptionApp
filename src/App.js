@@ -1,9 +1,12 @@
-import { StrictMode, useState } from "react";
+import { StrictMode, useState, lazy, Suspense } from "react";
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import SearchParams from "./SearchParams";
-import Details from "./Details";
+// import SearchParams from "./SearchParams";
+// import Details from "./Details";
 import ThemeContext from "./ThemeContext";
+
+const Details = lazy(() => import("./Details"));
+const SearchParams = lazy(() => import("./SearchParams"));
 
 export const App = () => {
   const theme = useState("darkblue");
@@ -21,10 +24,12 @@ export const App = () => {
             Adopt Me!
           </Link>
         </header>
-        <Routes>
-          <Route path="/" element={<SearchParams />} />
-          <Route path="/details/:id" element={<Details />} />
-        </Routes>
+        <Suspense fallback={<h1>loading route ...</h1>}>
+          <Routes>
+            <Route path="/" element={<SearchParams />} />
+            <Route path="/details/:id" element={<Details />} />
+          </Routes>
+        </Suspense>
       </div>
     </ThemeContext.Provider>
   );
