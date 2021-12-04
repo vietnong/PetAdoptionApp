@@ -1,4 +1,3 @@
-// replace Details.js
 import { Component } from "react";
 import Carousel from "./Carousel";
 import ThemeContext from "./ThemeContext";
@@ -22,9 +21,6 @@ class Details extends Component {
   adopt = () => (window.location = "http://bit.ly/pet-adopt");
 
   render() {
-    console.log(this.state);
-    // const { animal, breed, city, state, description, name, images } = this.state;
-
     if (this.state.loading) {
       return <h2>loading … </h2>;
     }
@@ -33,8 +29,8 @@ class Details extends Component {
       this.state;
 
     return (
-      <div className="details">
-        <div>
+      <div className="p-10 mb-10">
+        <div className="p-10 mb-10 rounded-lg bg-gray-200 shadow-lg flex flex-col justify-center items-center">
           <h1>{name}</h1>
           <h2>{`${animal} — ${breed} — ${city}, ${state}`}</h2>
           <ThemeContext.Consumer>
@@ -42,6 +38,7 @@ class Details extends Component {
               <button
                 onClick={this.toggleModal}
                 style={{ backgroundColor: theme }}
+                className="rounded px-6 py-2 color text-white hover:opacity-50 border-none"
               >
                 Adopt {name}
               </button>

@@ -10,7 +10,7 @@ export const App = () => {
   return (
     <ThemeContext.Provider value={theme}>
       <div
-        className="p-0 m-0"
+        className="w-full p-0 m-0"
         style={{
           background:
             "url(http://pets-images.dev-apis.com/pets/wallpaperA.jpg)",

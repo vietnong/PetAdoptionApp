@@ -51,7 +51,7 @@ const SearchParams = () => {
           <select
             className="w-60"
             id="animal"
-            value={animal || ""}
+            value={animal || "All"}
             onChange={(e) => setAnimal(e.target.value)}
             onBlur={(e) => setAnimal(e.target.value)}
             defaultValue={""}
