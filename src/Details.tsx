@@ -1,3 +1,5 @@
+import { RouteComponentProps } from "react-router-dom";
+import { PetAPIResponse, Animal } from "./APIResponsesTypes";
 import { Component, lazy } from "react";
 import Carousel from "./Carousel";
 import ThemeContext from "./ThemeContext";
@@ -5,22 +7,31 @@ import ThemeContext from "./ThemeContext";
 
 const Modal = lazy(() => import("./Modal"));
 
-class Details extends Component {
-  constructor() {
-    super();
-    this.state = { loading: true, showModal: false };
-  }
+class Details extends Component<RouteComponentProps<{id: string}>> {
+  state = {
+    loading: true,
+    showModal: false,
+    animal: "",
+    breed: "",
+    city: "",
+    state: "",
+    description: "",
+    name: "",
+    images: [] as string[],
+  };
+  
+
 
   async componentDidMount() {
     const res = await fetch(`http://pets-v2.dev-apis.com/pets?id=1`);
-    const json = await res.json();
+    const json = (await res.json()) as PetAPIResponse;
     this.setState(Object.assign({ loading: false }, json.pets[0]));
   }
 
   toggleModal = () => {
     this.setState({ showModal: !this.state.showModal });
   };
-  adopt = () => (window.location = "http://bit.ly/pet-adopt");
+  adopt = () => (window.location.href = "http://bit.ly/pet-adopt");
 
   render() {
     if (this.state.loading) {
