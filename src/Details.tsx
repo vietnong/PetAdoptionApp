@@ -1,4 +1,3 @@
-import { RouteComponentProps } from "react-router-dom";
 import { PetAPIResponse, Animal } from "./APIResponsesTypes";
 import { Component, lazy } from "react";
 import Carousel from "./Carousel";
@@ -7,7 +6,7 @@ import ThemeContext from "./ThemeContext";
 
 const Modal = lazy(() => import("./Modal"));
 
-class Details extends Component<RouteComponentProps<{id: string}>> {
+class Details extends Component {
   state = {
     loading: true,
     showModal: false,
@@ -19,8 +18,6 @@ class Details extends Component<RouteComponentProps<{id: string}>> {
     name: "",
     images: [] as string[],
   };
-  
-
 
   async componentDidMount() {
     const res = await fetch(`http://pets-v2.dev-apis.com/pets?id=1`);
