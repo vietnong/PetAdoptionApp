@@ -5,3 +5,6 @@ dist/
 .DS_Store
 coverage/
 .vscode/
+.parcel-cache/
+package-lock.json
+dist-server/
